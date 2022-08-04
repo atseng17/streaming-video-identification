@@ -1,0 +1,110 @@
+
+[TASK]
+TASK = "Inference"
+EXPECTED_SHOW = "Big Bang Theory"
+
+[DATA]
+VID_INFO = "data/raw/encompass-dev-ai-ml-content_content-list_latest.csv"
+VID_INFO_UPDATE = "data/raw/encompass-dev-ai-ml-content_content-list_update.csv"
+RAW_VIDEO_DIR = "data/raw/encompass_data"
+RAW_VIDEO_DIR_UPDATE = "data/update_data"
+PROCESSED_VIDEO_DIR = "data/processed/video"
+VIDEO_DIR_TRAIN = "data/processed/video/train"
+VIDEO_DIR_EVAL = "data/processed/video/val"
+VIDEO_DIR_TRAIN_UPDATE = "data/processed/video/train_update"
+VIDEO_DIR_EVAL_UPDATE = "data/processed/video/val_update"
+FRAME_DIR_TRAIN = "data/processed/frames/train"
+FRAME_DIR_EVAL = "data/processed/frames/val"
+FRAME_DIR_TRAIN_UPDATE = "data/processed/frames/train_update"
+FRAME_DIR_EVAL_UPDATE = "data/processed/frames/val_update"
+FACE_DIR_TRAIN = "data/processed/frames/train_face_crop"
+FACE_DIR_EVAL = "data/processed/frames/val_face_crop"
+FACE_DIR_TRAIN_UPDATE = "data/processed/frames/train_face_crop_update"
+FACE_DIR_EVAL_UPDATE = "data/processed/frames/val_face_crop_update"
+FILTER_TMP_FOLDER_TRAIN= "data/processed/frames/train_face_crop_filtered"
+FILTER_TMP_FOLDER_EVAL= "data/processed/frames/eval_face_crop_filtered"
+AUDIO_DIR_TRAIN = "data/processed/audio/train"
+AUDIO_DIR_EVAL = "data/processed/audio/val"
+CUSTOM_FACE_DIR_TRAIN = "data/processed/frames/custom_face_training/celeb_subset_train_1000"
+CUSTOM_FACE_DIR_EVAL = "data/processed/frames/custom_face_training/celeb_subset_val_300"
+
+[PREPROCESS]
+RECREATE_VID_SPLIT = "True"
+RECREATE_FRAMES = "True"
+RECREATE_REFERENCE_FRAME = "True"
+RECREATE_REFERENCE_FACE = "True"
+RANDOM_REF_SELECTION = "False"
+RECREATE_REFERENCE_FRAME_EMBEDDINGS = "True"
+RECREATE_REFERENCE_FACE_EMBEDDINGS = "True"
+RECREATE_REFERENCE_NAMES = "True"
+RECREATE_PROBABILITY_TABLE = "True"
+REFERENCE_FRAME_PATH = "reference/reference_frames"
+REFERENCE_FRAME_EMBEDDING_PATH = "reference/reference_emb/reference_frame_emb.pkl"
+REFERENCE_FACE_PATH = "reference/reference_faces"
+REFERENCE_FACE_EMBEDDING_PATH = "reference/reference_emb_face/reference_face_emb.pkl"
+REFERENCE_NAME_DICT_PATH = "reference/reference_name_dict.json"
+REFERENCE_PROB_DICT_PATH = "reference/reference_prob_dict.json"
+
+FILTER_FACES = "True"
+BLUR_THRES = 30.0
+FPOSE_THRES = 60.0
+N_SECS_TRAIN = 2
+N_SECS_EVAL = 2
+N_SECS_INF = 2
+FACE_ONLY = "True"
+FACE_CROP = "True" 
+NUM_REF = 10
+
+[MODEL]
+MODEL_NAME = "SIAMESE_NEG" 
+MODEL_DIR = "models"
+WEIGHTS = "models/SIAMESE_NEG/checkpoint_latest.pt"
+SAVED_FACE_MODEL = ""
+MODEL_LAST_LAYER_LOGITS = 11
+
+[TRAIN]
+RETRAIN_BACKBONE = "False"
+BATCH_SIZE = 64
+TRAIN_EPOCHS = 10
+LR = 0.0005
+LR_FACE = 0.0005
+GAMMA_FACE = 0.5
+SAVE_ITER_FACE = 2
+DECAY_STEP = 20
+DECAY_RATE = 0.5
+SAMPLING_MARGIN = 1.0
+BF_THRES = 10
+PLOT_DIR = "models/plots"
+MOST_COMMON_NAME_K = 10
+SCHEDULER_FACE = [5,10,20,25,30,35,40,45,50,55,60,65,75,80,85,90]
+NUM_WORKERS = 16
+NEG_SAMPLING_SIZE = 5
+
+[EVALUATION]
+SINGLE_SHOW_PERF = "None"
+EVALUATE_FRAMES = "False"
+EVALUATE_FACE = "True"
+EVALUATE_NAME = "False"
+CROP_VID = 0
+
+[INFERENCE]
+INF_DIR = "demo_files"
+EXP_DIR_INF = "demo_files/explanations"
+VIDEO_DIR_INF = "demo_files/raw"
+FRAME_DIR_INF = "demo_files/processed/frames"
+FACE_DIR_INF = "demo_files/processed/frames_face_crop"
+FILTER_TMP_FOLDER_INF = "demo_files/processed/frames_face_crop_filtered"
+AUDIO_DIR_INF = "demo_files/processed/audio"
+FRAMES_INF = "True"
+TRANSCRIPTS_INF = "True"
+REFERENCE_FRAME_PATH_INF = "reference/reference_frames"
+REFERENCE_FRAME_EMBEDDING_PATH_INF = "reference/reference_emb/reference_frame_emb.pkl"
+REFERENCE_FACE_PATH_INF = "reference/reference_faces"
+REFERENCE_FACE_EMBEDDING_PATH_INF = "reference/reference_emb_face/reference_face_emb.pkl"
+REFERENCE_NAME_DICT_PATH_INF = "reference/reference_name_dict.json"
+REFERENCE_PROB_DICT_PATH_INF = "reference/reference_prob_dict.json"
+GEN_INF_EXPLANATION = "True"
+FRAME_THRES = 0.995
+FACE_THRES = 0.8
+NAME_THRES = 2
+CERTAINTY_THRES = 0.98
