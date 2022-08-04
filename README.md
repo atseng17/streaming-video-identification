@@ -1,14 +1,8 @@
 # Encompass Oculus
 
-![](imgs/logo.png)
-
-![](https://raster.shields.io/badge/python-v3.6+-blue.png)
-![](https://api.travis-ci.org/anfederico/Clairvoyant.png?branch=master)
-![](https://raster.shields.io/badge/dependencies-up%20to%20date-brightgreen.png)
-
 ## Purpose
 
-The purpose of this project is to develop a model for broadcast tv content identification for Project Oculus for client Encompass. The proof-of-principle pipeline contains the code for data preprocessing and tv show identification. The codebase was developed and tested on an AWS P3 instance.
+The purpose of this project is to develop a model for broadcast tv content identification. The codebase was developed and tested on an AWS P3 instance.
 
 ## Table of Contents
 1. [Data Preparation](#1-data-preparation)
@@ -21,11 +15,10 @@ The purpose of this project is to develop a model for broadcast tv content ident
 
 ## 1. Data Preparation
 The user should first clone the code repository, then download 3 zip files from the provided S3 URL and then unzip them to the code repository:
- - Download the sample tv-shows to be trained (download `s3://encompass-dev-ai-ml-content/sflscientific-encompass/raw.zip`) and unzip to `<path-to-code-repository>/data/raw`
- - Download the sample tv-shows to be predicted (download `s3://encompass-dev-ai-ml-content/sflscientific-encompass/demo_files.zip`) and unzip to `<path-to-code-repository>/demo_files`
- - Download the pretrained models (download `s3://encompass-dev-ai-ml-content/sflscientific-encompass/vosk-model-en-us-0.22.zip`) and unzip to `<path-to-code-repository>/models/vosk-model-en-us-0.22`
+ - Download the sample tv-shows to be trained and unzip to `<path-to-code-repository>/data/raw`
+ - Download the sample tv-shows to be predicted and unzip to `<path-to-code-repository>/demo_files`
+ - Download the pretrained models and unzip to `<path-to-code-repository>/models/vosk-model-en-us-0.22`
 
-Note: The sample tv-shows to be trained is a very small dataset to ensure the user is able to run the code, ideally the user will need much more data to observe good results.
 
 Finally, the user can navigate to the code repository directory via `cd Encompass_Oculus`, and the result code structure will look like the following:
 
@@ -119,10 +112,10 @@ Note: In the training and building reference section, a very small dataset(`raw.
 
 To simulate the code in production (Inference only), a pretrained model and a prebuilt reference are provided.
 1. The user should download 3 zip files from the provided dropbox link and then unzip them to the repository:
-    - Download the sample tv-shows to be predicted (`s3://encompass-dev-ai-ml-content/sflscientific-encompass/demo_files.zip`) and unzip to `<path-to-repo>/demo_files`
-    - Download the show reference (`s3://encompass-dev-ai-ml-content/sflscientific-encompass/reference.zip`) and unzip to `<path-to-repo>/reference`
-    - Download the pretrained speech-to-text model weights (`s3://encompass-dev-ai-ml-content/sflscientific-encompass/vosk-model-en-us-0.22.zip`) and unzip to `<path-to-repo>/models/vosk-model-en-us-0.22`
-    - Download the Siamese model weights (`s3://encompass-dev-ai-ml-content/sflscientific-encompass/SIAMESE_NEG.zip`) and unzip to `<path-to-repo>/models/SIAMESE_NEG`
+    - Download the sample tv-shows to be predicted (`demo_files.zip`) and unzip to `<path-to-repo>/demo_files`
+    - Download the show reference (`reference.zip`) and unzip to `<path-to-repo>/reference`
+    - Download the pretrained speech-to-text model weights (`vosk-model-en-us-0.22.zip`) and unzip to `<path-to-repo>/models/vosk-model-en-us-0.22`
+    - Download the Siamese model weights (`SIAMESE_NEG.zip`) and unzip to `<path-to-repo>/models/SIAMESE_NEG`
 2. The user can then follow the `Inference` section in `Usage`.
 
 ## 5. Output Format
@@ -149,19 +142,3 @@ The example JSON output will be:
     ...
 ]
 ```
-
-## 6. Contacts
-
-    - Developers
-        - Andrew Tseng (atseng@sflscientific.com)
-        - Dave McNamee (dmcnamee@sflscientific.com)
-    - SFL Scientific founders
-        - Mike Luk (mluk@sflscientific.com)
-        - Mike Segala (msegala@sflscientific.com)
-        - Dan Ferrante (danieldf@sflscientific.com)
-
-## 7. License
-
-[![CC-BY-ND](https://licensebuttons.net/l/by-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nd/4.0/)
-
-To the extent possible under the law, and under our agreements, [SFL Scientific](http://sflscientific.com/) retains all copyright and related or neighboring rights to this work.
